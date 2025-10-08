@@ -151,7 +151,7 @@
 
 Получили очищенные данные, пригодные для анализа
         
-<img width="703" height="300" alt="image" src="https://github.com/user-attachments/assets/c62bde6f-f400-4f4f-91a1-f11d94256c0c" />
+<img width="780" height="360" alt="image" src="https://github.com/user-attachments/assets/c62bde6f-f400-4f4f-91a1-f11d94256c0c" />
         
 
 **в случае со статьями:**
