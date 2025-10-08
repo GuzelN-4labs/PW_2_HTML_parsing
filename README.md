@@ -200,12 +200,12 @@
 - всего 69 курсов
 
 
-<img width="836" height="536" alt="image" src="https://github.com/user-attachments/assets/1b3cd482-7bd9-48af-9bb5-c6054bf44f73" />
+<img width="936" height="636" alt="image" src="https://github.com/user-attachments/assets/1b3cd482-7bd9-48af-9bb5-c6054bf44f73" />
 
 **Опубликованные статьи**
 
 
-<img width="464" height="162" alt="image" src="https://github.com/user-attachments/assets/385907c3-a4bf-401a-8bfb-c1417176d88c" />
+<img width="780" height="462" alt="image" src="https://github.com/user-attachments/assets/385907c3-a4bf-401a-8bfb-c1417176d88c" />
 
 #### Вывод
 В результате выполнения практической работы были освоены продвинутые техники сбора данных путем
