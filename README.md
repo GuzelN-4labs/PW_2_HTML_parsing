@@ -106,6 +106,53 @@
 <br> Для того, чтобы можно было произвести анализ данных их нужно сначала обработать (убрать пропуски, убрать лишние символы, преобразовать к нужному типу данных).
 <br> Для этого в том числе был использован regex
 
+в случае с курсами: 
+- будем рассматривать среднюю, минимальную и максимальную потенциальную зарплату, указанную в карточках.
+- среднюю, минимальную и максимальную скидку
+- средний, минимальный и максимальный срок обучения.
+
+Для этого в случае с зарплатой нужно извлечь нужные данные из текста, в случае со скидкой и сроком обучения - очистить данные от лишних символов.
+
+Данные по зарплате:
+
+  <img width="953" height="314" alt="image" src="https://github.com/user-attachments/assets/724c4dcb-a97d-4f6f-81f6-1cde4c00fea1" />
+  
+
+                # очистка данных в столбце duartion, чтобы можно было посмотреть, оценить курсы по продолжительности
+                # убираем при помощи regex все символы в кириллице и пробелы
+                cources_df.loc[:,'duration'] = [re.sub('\s[\u0401\u0451\u0410-\u044f]+', '', i) for i in cources_df['duration']] 
+                # убираем знак %
+                cources_df.loc[:,'discount'] = cources_df['discount'].replace(r'\%', '', regex = True)
+                # убираем символы + и -
+                cources_df.loc[:,'discount'] = cources_df['discount'].replace(r'[+-]', '', regex = True) 
+                
+                # также очистим от лишних символов названия курсов
+                # в наименовании встречаются служебные символы, убираем их
+                cources_df.loc[:,'title'] = cources_df['title'].replace(r'\xa0', ' ', regex = True)
+                cources_df.loc[:,'title'] = cources_df['title'].replace(r'\xad', '-', regex = True) 
+                
+                # также очистим от лишних символов описание курсов
+                cources_df['description'] = cources_df['description'].replace(r'\xa0', ' ', regex = True) 
+                
+                # выведем в отдельный столбец признак 'Помощь с трудоустройством'
+                cources_df.loc[cources_df['description'].str.contains("Помощь с трудоустройством: да"), 'job search help'] = 1
+                
+                # выведем в отдельный столбец данные о потенциальной зарплате
+                # при помощи regex ищем 5-6 идущих подряд чисел (например,250000)
+                 # Идущих подряд, т.к. ищем в строке из которой убрали все пробелы [re.sub('\s+', '', i) for i in cources_df['description']]
+                cources_df['potential_salary'] = [re.findall(r'\d{5,6}', i) for i in [re.sub('\s+', '', i) for i in cources_df['description']]] 
+                                                                                         
+                # преобразование в число кодом ниже, т.к. код выше дает список строк
+                for i in range(len(cources_df)):
+                      if len(cources_df['potential_salary'][i]) == 0:
+                          cources_df['potential_salary'][i] = int(0)
+                      else:
+                          cources_df['potential_salary'][i] = int(cources_df['potential_salary'][i][0])
+
+Получили очищенные данные, пригодные для анализа
+        
+<img width="703" height="300" alt="image" src="https://github.com/user-attachments/assets/c62bde6f-f400-4f4f-91a1-f11d94256c0c" />
+        
 
 
               
